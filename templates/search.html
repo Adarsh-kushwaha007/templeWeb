@@ -1,0 +1,349 @@
+{% include "header.html"%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Temples Across India</title>
+    <!-- <link rel="stylesheet" href="{% static 'css/search.css' %}"> -->
+    <style>
+        /* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url(""); 
+    
+}
+#search_temples{
+    margin:50px ;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    /* flex-direction: row; */
+    justify-content:center;
+    align-items: center;
+    box-sizing: border-box;
+    margin-top: 10px;
+    
+}
+header{
+    margin-top: 10px;
+}
+
+input[type="text"]
+{
+    padding: 15px;
+    width: 500px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-size: large;
+    border-radius: 8px;
+    color: rgb(127, 4, 68);
+    
+
+}
+button[type="submit"]
+{
+    padding: 15px;
+    font-size: small;
+    width: 20%;
+    /* height: 10px; */
+    
+    border-radius: 8px;
+    background-color: rgb(127, 4, 68);
+    color: azure;
+    box-sizing: border-box;
+
+}
+#imgid{
+    margin: 5px;
+    padding: 8px;
+    height:12vh;
+    width: 34%;
+    
+    border: 12px;
+    box-sizing: border-box;
+    position: relative;
+} 
+
+
+button:hover
+{
+    background-color:  #00b894;
+    color: white;
+    cursor: pointer;
+    box-shadow: 1px 1px 2px black;
+    
+
+}
+section h1{
+    text-align: center;
+    font-size: x-large;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    text-shadow: none;
+    color: rgb(127, 4, 68);
+    margin-bottom: 20px;
+    
+}
+.search-container {
+    width: 367px;
+    margin: 20px auto;
+    
+}
+
+#searchInput {
+    width: 99%;
+    padding: 10px;
+    font-size: 16px;
+}
+.both{
+    display: flex;
+     align-items: center;
+    /*justify-content: space-between;  */
+    flex-direction: row;
+    margin: 20px;
+}
+/* section styles */
+ section{
+    max-width: 400px;
+    margin: 0 auto  ;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color:rgb(127, 4, 68);
+    box-shadow:1px 1px 2px rgb(127, 4, 68) ;
+    text-shadow: none;
+}
+
+
+/* Search input styles */
+#templename{
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    color: rgb(127, 4, 68);
+    border-color: rgb(127, 4, 68);
+}
+#search_content{
+    width: 51%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+#searchInput {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    color: rgb(127, 4, 68);
+    border-color: rgb(127, 4, 68);
+}
+#SearchInput {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    color: rgb(127, 4, 68);
+    border-color: rgb(127, 4, 68);
+     /* background-color: rgb(127, 4, 68);*/
+}
+
+/* State list styles */
+.name-list{
+    max-height: 100px; /* Set the desired height for the list */
+    overflow-y: scroll; /* Enable vertical scrollbar */
+    margin-top: 10px;
+    width: 100%;
+    font-weight: lighter;
+    text-shadow: none;   
+}
+.state-list {
+    max-height: 100px; /* Set the desired height for the list */
+    overflow-y: scroll; /* Enable vertical scrollbar */
+    margin-top: 10px;
+    width: 100%;
+    font-weight: lighter;
+    text-shadow: none;
+}
+/* City list styles */
+.city-list {
+    max-height: 100px; /* Set the desired height for the list */
+    overflow-y: scroll; /* Enable vertical scrollbar */
+    margin-top: 10px;
+    width: 100%;
+    font-weight: lighter;
+    text-shadow: none;
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <section>
+            <h1>Find Temples Across India</h1>
+        </section>
+        <!-- <section class="st"> -->
+        <div id="search_temples">
+            
+                <form  id="search_content" action="/search_info">
+                    <input type="text" id="templename" placeholder="Search Your Temple" name="name">
+                    <button type="submit" class="submit" >
+                        Search
+                        <!-- <span><img height="15px" width="15px" src="{% static 'images/search_icon.png' %}" ></span> -->
+                    </button>
+                    <!-- <div id="reslt" class="name-list"></div> -->
+                </form>
+            
+        </div>
+    <!-- </section> -->
+    </header>
+    <div class="both">
+        <section> 
+            <div class="search-container">
+                <h1 id="head1">STATE</h1>
+                <input type="text" id="searchInput" placeholder="Search...">
+                <div id="results" class="state-list"></div>
+            </div>
+        </section>
+        <section>
+            <div class="search-container">
+                <h1 id="head1">CITY</h1>
+                <form id="searchForm" method="get" action="/search/">
+                    <input type="text" id="SearchInput" placeholder="Search..." name="query">    
+                    <!-- <button type="submit">Search</button> -->
+                </form>
+                <div id="Results" class="city-list">
+                    {% for temple in temples%}
+                        <!-- {% if temple.city == query %} -->
+                            <a style="display: block;" href="/search_info?state={{temple.city}}">{{temple.city}}</a>
+                        <!-- {% endif %} -->
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- <script src="{% static 'js/search.js' %}"></script> -->
+    <script>
+        
+        const name = [
+    'Mahakaleshwar','ram mandir','grishneshwar',
+    // Add more items as needed
+    
+];
+
+// const city = JSON.parse('{{temples_list}}');
+// console.log("Temples List:", temples_list);
+
+const Searchinput = document.getElementById('templename');
+const ResultsCont = document.getElementById('reslt');
+
+Searchinput.addEventListener('input', handleSearchName);
+
+function handleSearchName() {
+    const query = Searchinput.value.toLowerCase();
+    const filteredname = name.filter(names => names.toLowerCase().includes(query));
+
+    displayNameResults(filteredname);
+}
+
+function displayNameResults(filteredname) {
+    ResultsCont.innerHTML = '';
+    filteredname.forEach(name => {
+        const namecont = document.createElement('a');
+        namecont.style = 'display:block';
+        namecont.setAttribute('href','/search_info?name='+name)
+        namecont.textContent = name;
+        ResultsCont.appendChild(namecont);
+    });
+}
+     
+        const items = [
+    'Tamil Nadu',
+    'Maharashtra',
+    'Karnataka',
+    'Gujarat',
+    'Andhra Pradesh',	
+    'Arunachal Pradesh',	
+    'Assam'	,
+    'Bihar'	,
+    'Chhattisgarh',	
+    'Goa',
+    'Haryana','Himachal Pradesh','Jharkhand','Kerala','Manipur',
+    'Meghalaya','Mizoram','Nagaland','Odisha','Punjab','Rajasthan',
+    'Sikkim','Telangana','Tripura','Uttar Pradesh',	
+    'Uttarakhand','West Bengal',
+    // Add more items as needed
+];
+
+const searchInput = document.getElementById('searchInput');
+const resultsContainer = document.getElementById('results');
+
+searchInput.addEventListener('input', handleSearch);
+
+function handleSearch() {
+    const query = searchInput.value.toLowerCase();
+    const filteredItems = items.filter(item => item.toLowerCase().includes(query));
+
+    displayResults(filteredItems);
+}
+
+function displayResults(filteredItems) {
+    resultsContainer.innerHTML = '';
+    filteredItems.forEach(item => {
+        const cont = document.createElement('a');
+        cont.style = 'display:block'; 
+        cont.setAttribute('href','/search_info?state='+item)
+        cont.textContent = item;
+        resultsContainer.appendChild(cont);
+    });
+}
+
+
+// script.js
+const city = [
+    'Veraval','Ayodhya',
+    // Add more items as needed
+    
+];
+
+// const city = JSON.parse('{{temples_list}}');
+// console.log("Temples List:", temples_list);
+
+const SearchInput = document.getElementById('SearchInput');
+const ResultsContainer = document.getElementById('Results');
+
+SearchInput.addEventListener('input', handleSearchCity);
+
+function handleSearchCity() {
+    const query = SearchInput.value.toLowerCase();
+    const filteredcity = city.filter(cities => cities.toLowerCase().includes(query));
+
+    displayCityResults(filteredcity);
+}
+
+function displayCityResults(filteredcity) {
+    ResultsContainer.innerHTML = '';
+    filteredcity.forEach(city => {
+        const citycont = document.createElement('a');
+        citycont.style = 'display:block';
+        citycont.setAttribute('href','/search_info?city='+city)
+        citycont.textContent = city;
+        ResultsContainer.appendChild(citycont);
+    });
+}
+    </script>
+    {% include "footer.html" %}
+<!-- </body>
+</html> -->

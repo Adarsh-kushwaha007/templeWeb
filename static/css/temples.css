@@ -1,0 +1,309 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    /* font-family:Arial, Helvetica, sans-serif ; */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+ } 
+ /* styling of navbar */
+#navbar{
+    position: relative;
+}
+#navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+.logo-img img{
+    height: 64px;
+    width: 73px;
+    border-radius: 40%;
+    margin-top: 5px;
+    margin-left:5px;
+}
+.logo-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: left
+}
+.logo-text .logo-heading{
+    font-size: 25px;
+    margin-bottom: -10px;
+    color: #fff;
+}
+
+.logo-text .logo-paragraph{
+    font-size: very small;
+    font-weight: 500;
+    margin-top: 8px;
+    color: #fff;
+}
+.item-list{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 35px;
+}
+#navbar::before{
+    content: "";
+    background-color: #333;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    /* opacity: 0.2; */
+}
+#navbar ul li{
+    list-style: none;
+    font-size: 1.3rem;
+}
+#navbar ul li a{
+    font-size:small;
+    color: #fff;
+    display: block;
+    padding: 3px 22px;
+    margin-right: 8px;
+    text-decoration: none;   
+}
+#navbar ul li a:hover{
+    color: rgba(0, 0, 0, 0.748);
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: 2px;
+}
+ /* styling for animated images */
+.section_image{
+    height: 80vh;
+    width: 100%;
+    /* display: grid; */
+    background-color: white;
+    place-items: center;
+}
+ .image_container{
+    margin: 0px;
+    padding-right: 0px;
+    height: 80vh;
+    width: 100%;
+    background-image: url("../images/bg1.jpg/"); 
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%); 
+    animation: image_animate 40s linear infinite;
+}
+@keyframes image_animate{
+    0%{
+        background-image: url("../images/sanghi.jpg");
+    }
+    25%{
+        background-image: url("../images/bg1.jpg/");
+    }
+    50%{
+        background-image: url("../images/chardham.jpg/");
+    }
+    75%{
+        background-image: url("../images/vishvanath.jpg/");
+    }
+    100%{
+        background-image: url("../images/somnath.jpeg/");
+    }
+} 
+/* styling for text part  */
+.main{
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    width: 100%;
+    background-color: rgb(247, 207, 120); 
+    color: black;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    /* color: white; */
+    transition: all ease 0.5s;
+    margin-bottom: 5px;
+}
+section{
+    font-size: small;
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 5px;
+    font-weight: 200;
+    text-shadow: 1px 2px 3px black;
+}
+section h3{
+    font-size: 30px;
+    font-weight: 250;
+    text-shadow: 1px 1px 2px black;
+}
+section h1{
+    margin: 20px 0px 10px 0px;
+    font-size: 30px;
+    font-weight: 400;
+    text-shadow: 1px 1px 1px black;
+}
+section p{
+    font-size: 25px;
+    white-space: 2px;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px black;
+}
+section a{
+    margin-top: 10px;
+    padding: 15px 40px;
+    border-radius: 8px;
+    text-decoration: none;
+    text-transform: none;
+    outline: none;
+    font-size: 20px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    transition: all ease 0.5s;
+}
+section .btnone{
+    background-color: #fff;
+    color: #000;
+}
+.btnone:hover{
+    background-color: #00b894;
+    color:white;
+    box-shadow: 5px 5px 0px black;
+}
+section .btntwo{
+    background-color: #fff;
+    color:#000;
+}
+.btntwo:hover{
+    background-color: #00b894;
+    color: #fff;
+    box-shadow: 5px 5px 0px black;
+}
+.change_content::after{
+    content: "";
+    animation: changetext 20s infinite linear;
+    color: #00b894;
+}
+@keyframes changetext{
+    0%{content: "in kerala";}
+    20%{content: " in Madhyapradesh";}
+    35%{content: "in Gujarat";}
+    60%{content: "in Jammu & Kashmir";}
+    80%{content: "in Kashi";}
+    100%{content: "in Himachalpradesh";}
+}
+/* styling for multiple image cards */
+#card-container {
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+  }
+  .card {
+    max-width: 200px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer; 
+  
+  }
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  .card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  .card-content {
+    padding: 10px;
+    height: 120px;
+    overflow: hidden;
+  }
+  .card h2 {
+    font-size: 18px;
+    margin-bottom: 5px; 
+  }
+  .card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: hidden;
+    white-space: nowrap;
+  }
+  .card a{
+      display: block;
+      text-decoration: none;
+      color: inherit;
+  }
+  /* styling for footer  */
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 30px 0;
+    border-radius:5%;
+    margin-top: 10px;
+  }
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    /* flex-wrap: wrap; */
+  }
+  .footer-section {
+    width: 30%;
+    padding: 0 20px;
+  }
+  .footer-section a{
+    text-decoration: none;
+    color: #fff;
+  }
+  .footer-section a:hover{
+    color: #ffd700; /* Change color on hover */
+  }
+  .footer-section h3 {
+    font-size: 20px;
+    margin-bottom: 10px;   
+  } 
+  .footer-section p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .social-links {
+    margin-top: 10px;
+  } 
+  .social-links a {
+    display: inline-block;
+    margin-right: 10px;
+    transition: transform 0.3s ease-in-out;
+  } 
+  .social-links a:hover {
+    transform: translateY(-3px);
+  }
+  .social-links img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff;
+    padding: 5px;
+  } 
+  /* Advanced Hover Effect */
+  .social-links a:hover img {
+    transform: rotate(360deg);
+    transition: transform 1s ease;
+  }
+

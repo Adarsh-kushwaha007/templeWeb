@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    <title>Google Maps Example</title>
+    <style>
+        /* Set the size of the map container */
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    
+     <!-- <form id="routeForm">
+        <label for="origin">Origin:</label>
+        <input type="text" id="origin" name="origin">
+
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" name="destination">
+        <!-- <select id="destination" name="destination">
+            {% for temple in temples %}
+                <option value="{{ temple.name}}">{{ temple.name }}</option>
+            {% endfor %}
+        </select>  
+
+        <button id="getRouteBtn">Get Route</button>
+    </form> -->
+</br>
+</br> 
+    <!-- Create a container for the map-->
+    <div id="map"></div>
+
+    <!-- Include the Google Maps JavaScript API using your API key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByw2ycN8WG448Ef_H4Pa4C62appI6fRtI&callback=initMap" async defer></script>
+
+    <script>
+    var templeData = JSON.parse('{{ temple_data_json|escapejs }}');
+
+    function initMap() {
+        console.log("Initializing map...");
+        var myLatLng = {lat: 20.0000, lng: 77.0000};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: myLatLng,
+            zoom: 6
+        });
+        console.log("Temple Data:", templeData);
+
+        for (var i = 0; i < templeData.length; i++) {
+            var temple = templeData[i];
+            console.log("Temple:", temple);
+            
+            var marker = new google.maps.Marker({
+                position: {lat: parseFloat(temple.latitude), lng: parseFloat(temple.longitude)},
+                map: map,
+                title: temple.name,
+                address:temple.address,
+                // icon:"fa-solid fa-om"
+                icon: {
+                    url: '/static/images/flag.png', // URL of the uploaded image file
+                    scaledSize: new google.maps.Size(15, 20) // Size of the marker icon
+                }
+            });
+        }       
+    }
+    document.getElementById('getRouteBtn').addEventListener('click', function() {
+        var origin = document.getElementById('origin').value;
+        var destination = document.getElementById('destination').value;
+
+        // Send a POST request to Django view
+        fetch('/calculate_route/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': '{{ csrf_token }}'  // Include CSRF token if using Django's CSRF protection
+            },
+            body: 'origin=' + encodeURIComponent(origin) + '&destination=' + encodeURIComponent(destination)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response, for example, display route steps on the page
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+
+   
+</script> 
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d240751.7593202894!2d72.65335290461513!3d19.466504699999987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7a995f5ab925f%3A0xc0a1d6d0f57e6868!2sJivdani%20Devi%20Mandir%2C%20Virar!5e0!3m2!1sen!2sin!4v1714551041445!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d374070.3311602892!2d72.57298317032888!3d19.302590066656343!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7aed2588af38f%3A0xeaa583542eb10668!2sKankaai%20Mataji%20Temple!5e0!3m2!1sen!2sin!4v1714550421347!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+</body>
+</html> 
+
+

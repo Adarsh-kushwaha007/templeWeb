@@ -1,0 +1,100 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block start %}
+
+<style>
+    /* CSS styles here */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f1f1;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .form-group input[type="submit"] {
+        background-color: #3b5998;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .form-group input[type="submit"]:hover {
+        background-color: #304e77;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>View Profile</h2>
+    <form action="#" method="POST" enctype="multipart/form-data">
+        {% csrf_token %} 
+        <center><div class="form-group">
+            <label for="photo">Photo</label>
+            <img  class="profile-image" src="{{ profile_model.get_photo_url }}" alt="Profile Photo">
+            <div class="form-group">
+                <label for="photo">Upload New Photo</label>
+                <input type="file" id="photo" name="photo">
+            </div>
+            </div>
+        </center>
+        <div class="form-group">
+            <label for="fullname">Username</label>
+            <input type="text" id="fullname" name="username" value="{{user_model.username}}" readonly>
+        </div>
+        
+        <div class="form-group">
+            <label for="firstname">Firstname</label>
+            <input type="text" id="firstname" name="firstname" value="{{profile_model.firstname}}">
+        </div>
+        <div class="form-group">
+            <label for="lastname">Lastname</label>
+            <input type="text" id="lastname" name="lastname" value="{{profile_model.lastname}}">
+        </div>
+        <div class="form-group">
+            <label for="bio">Bio</label>
+            <input type="text" id="bio" name="bio" value="{{profile_model.bio}}">
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Save Changes">
+        </div>
+    </form>
+</div>
+
+{% endblock %}

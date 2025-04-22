@@ -1,0 +1,94 @@
+{% include "header.html"%}
+{% load static %}
+  <title>Learn More</title>
+  <!-- <link rel="stylesheet" href="{% static 'css/learn.css' %}"> -->
+</head>
+<style>
+  body {
+    /* font-family: Arial, sans-serif; */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    /* background-color: #333; */
+    color:black;
+    padding: 20px;
+    text-align: center;
+    text-shadow: none;
+  }
+  
+  main {
+    padding: 20px;
+    margin-top: 15px;
+  }
+  
+  .about-section, .feedback-section {
+    margin-bottom: 30px;
+    color: black;
+  }
+  
+  h2 {
+    /* color: #333; */
+    color: black;
+    margin-top: 15px;
+    text-shadow: none;
+    font-size: x-large;
+
+  }
+  #plearn{
+    text-shadow: none;
+    letter-spacing: 2px;
+    font-size: medium;
+    /* font-weight: normal; */
+  }
+  textarea {
+    width: 100%;
+    height: 100px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #555;
+  }
+  
+  #feedback-message {
+    margin-top: 10px;
+    color: green;
+  }
+  
+</style>
+<body>
+  
+  <main>
+    <h1>Learn More</h1>
+    <section class="about-section">
+      <h2>What We Offer</h2>
+      <p id="plearn">In "Temple Connect," users can access a comprehensive platform
+         for all their temple-related needs. From finding nearby temples to exploring their histories, 
+         rituals, and significance, Temple Connect offers a one-stop solution. Whether it's seeking information on deities, 
+         worship practices, or temple architecture, users can discover everything they need to enrich their spiritual journey. 
+         Additionally, they can stay updated on upcoming events, festivals, and community gatherings. Temple Connect aims to bridge the gap
+         between devotees and their spiritual heritage, providing a seamless online experience for temple enthusiasts.</p>
+    </section>
+    <section class="feedback-section">
+      <h2>Give Us Your Feedback</h2>
+      <form id="feedback-form" method="post">
+        {% csrf_token %}
+        <textarea id="feedback" name="feedback" placeholder="Enter your feedback here..."></textarea>
+        <button type="submit">Submit Feedback</button>
+      </form>
+      <p id="feedback-message"></p>
+    </section>
+  </main>
+{% include "footer.html" %}

@@ -1,0 +1,58 @@
+ /* body {
+  margin: 0;
+  padding: 0;
+
+}
+
+.first {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+main {
+  padding: 20px;
+}
+
+.about-section, .team-section {
+  margin-bottom: 30px;
+}
+.team-section h2{
+  align-items: center;
+} 
+h2 {
+  color: #333;
+  margin-bottom: 10px;
+  align-items: center; 
+}
+
+p {
+  color: #555;
+}
+
+.team-member {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.team-member img {
+  width: 150px;
+  border-radius: 30%;
+  border: 4px solid #333;
+  transition: transform 0.3s ease;
+}
+
+.team-member h3 {
+  margin-top: 10px;
+  color: #333;
+}
+
+.team-member p {
+  color: #777;
+}
+
+.team-member img:hover {
+  transform: scale(1.1); /* Scale the image on hover 
+  
+}

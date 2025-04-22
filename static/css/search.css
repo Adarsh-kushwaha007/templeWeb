@@ -1,0 +1,117 @@
+/* Reset default styles 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#search_temples{
+    margin:50px ;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    
+}
+
+input[type="text"]
+{
+    padding: 15px;
+    width: 500px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-size: large;
+    border-radius: 8px;
+    
+
+}
+button[type="submit"]
+{
+    padding: 15px;
+    font-size: small;
+    border-radius: 8px;
+    background-color: rgb(127, 4, 68);
+    color: azure;
+    box-sizing: border-box;
+}
+#imgid{
+    margin: 5px;
+    padding: 8px;
+    height:12vh;
+    width: 34%;
+    
+    border: 12px;
+    box-sizing: border-box;
+    position: relative;
+} 
+
+
+button:hover
+{
+    background-color:  #00b894;
+    color: white;
+    cursor: pointer;
+    box-shadow: 1px 1px 2px black;
+    
+
+}
+section h1{
+    text-align: center;
+    font-size: x-large;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: rgb(127, 4, 68);
+    /* margin-bottom: 30px; 
+    
+}
+.both{
+    display: flex;
+     align-items: center;
+    /*justify-content: space-between;  
+    flex-direction: row;
+    margin: 20px;
+}
+/* section styles 
+ section{
+    max-width: 400px;
+    margin: 0 auto  ;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color:rgb(127, 4, 68);
+    box-shadow:1px 1px 2px rgb(127, 4, 68) ;
+    
+}
+
+/* Search input styles 
+#searchInput {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: rgb(127, 4, 68);
+    border-color: rgb(127, 4, 68);
+     /* background-color: rgb(127, 4, 68);
+}
+
+/* State list styles 
+.state-list {
+    max-height: 100px; /* Set the desired height for the list 
+    overflow-y: scroll; /* Enable vertical scrollbar 
+    margin-top: 10px;
+    width: 100%;
+}
+/* City list styles 
+.city-list {
+    max-height: 100px; /* Set the desired height for the list 
+    overflow-y: scroll; /* Enable vertical scrollbar 
+    margin-top: 10px;
+    width: 100%;
+ } */
